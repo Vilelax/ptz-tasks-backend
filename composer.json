@@ -1,0 +1,19 @@
+{
+    "name": "gabri/ptz-tasks",
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gabriel",
+            "email": "gabrielvsn@gmail.com"
+        }
+    ],
+    "require": {
+        "coffeecode/router": "^2.0",
+        "ext-pdo": "*",
+        "ext-json": "*"
+    }
+}
