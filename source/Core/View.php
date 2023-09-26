@@ -4,7 +4,11 @@ namespace Source\Core;
 
 class View{
 
-    public static function render(array $data): string{
+
+    public function __construct(){
+    }
+
+    public static function jsonRender(array $data): string{
 
         return json_encode($data);
 

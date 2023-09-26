@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS ptz_tasks CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS tasks(
+       id INT(6) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+       title VARCHAR(255) NOT NULL,
+       description VARCHAR(255) NOT NULL,
+       create_at DATETIME,
+       updated_at DATETIME
+);

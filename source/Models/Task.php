@@ -2,14 +2,12 @@
 
 namespace Source\Models;
 
-use \Source\Core\Model;
+use \Source\Core\ActiveRecord;
 
-class Task extends Model{
+class Task extends ActiveRecord{
     
     protected string $table = "tasks";
     protected string $idField = "id";
     protected bool $logTimestamp = TRUE;
-
-
 
 }

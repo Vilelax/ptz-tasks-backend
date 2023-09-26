@@ -44,7 +44,7 @@ class TaskController extends Controller{
 
         }
 
-        echo View::render([
+        echo View::jsonRender([
             "data" => $data,
             "success" => $feedback
         ]);
@@ -65,14 +65,14 @@ class TaskController extends Controller{
             if($task){
                 $feedback = true;
                 $result['title'] = $task->title;
-                $result['description'] = $task->title;
+                $result['description'] = $task->description;
             }
 
         }catch(Exception $exception){
 
         }
 
-        echo json_encode([
+        echo View::jsonRender([
             "data" => $result ?? null,
             "success" => $feedback
         ]);
@@ -100,9 +100,11 @@ class TaskController extends Controller{
         }catch(Exception $exception){
         }
 
-        echo View::render([
+        echo View::jsonRender([
             "success" => $feedback
         ]);
+
+        header('Location: http://localhost:3000/');
 
     }
 
@@ -112,7 +114,7 @@ class TaskController extends Controller{
 
         try{
             $task = new Task();
-            $task->id = isset($data['id']) ? strip_tags($data['id']) : "";
+            $task->id = isset($_POST['id']) ? strip_tags($_POST['id']) : "";
             $task->title = isset($_POST['title']) ? strip_tags($_POST['title']) : "";
             $task->description = isset($_POST['description']) ? strip_tags($_POST['description']) : "";
 
@@ -124,11 +126,11 @@ class TaskController extends Controller{
 
         }
 
-        echo View::render([
+        echo View::jsonRender([
             "success" => $feedback
         ]);
 
-
+        header('Location: http://localhost:3000');
 
     }
 
@@ -149,9 +151,11 @@ class TaskController extends Controller{
 
         }
 
-        echo View::render([
+        echo View::jsonRender([
             "success" => $feedback
         ]);
+
+        header('Location: http://localhost:3000');
     }
 
     /**
@@ -164,7 +168,7 @@ class TaskController extends Controller{
 
             $errorCode = (int) strip_tags($data['code']);
 
-        }catch(\Exception $exception){
+        }catch(Exception $exception){
 
             $errorCode = 0;
 
@@ -174,7 +178,7 @@ class TaskController extends Controller{
 
         $this->data['code'] = $errorCode;
 
-        echo View::render([
+        echo View::jsonRender([
             "message" => $this->data['message'],
             "code" => $this->data['code']
         ]);
