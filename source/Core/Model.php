@@ -10,7 +10,7 @@ namespace Source\Core;
 use PDO;
 use Exception;
 
-abstract class ActiveRecord{
+abstract class Model{
     
     private static PDO $connection;
 

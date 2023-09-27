@@ -8,12 +8,6 @@ $router = new Router("https://localhost/ptz-tasks");
 
 $router->namespace("Source\App");
 
-//Frontend
-$router->get("/", "FrontController:index");
-
-$router->get("/about", "FrontController:about");
-
-
 //App routes
 $router->group("/app");
 
@@ -31,7 +25,7 @@ $router->get("/task/complete/{id}", "TaskController:complete");
 
 
 //Error route
-$router->get("/error/{code}", "TaskController:httpError");
+$router->get("/error/{code}", "TaskController:Error");
 
 
 //Dispatcher
@@ -39,5 +33,5 @@ $router->dispatch();
 
 
 if ($router->error()) {
-    $router->redirect("/error/{$router->error()}");
+    $router->redirect("app/error/{$router->error()}");
 }

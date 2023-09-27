@@ -162,7 +162,7 @@ class TaskController extends Controller{
      * @param array $data
      * @return void
      */
-    public function httpError(array $data): void{
+    public function Error(array $data): void{
 
         try{
 
@@ -174,7 +174,7 @@ class TaskController extends Controller{
 
         }
 
-        $this->data['message'] = (new HttpError($errorCode))->getMessage();
+        $this->data['message'] = getHttpError($errorCode);
 
         $this->data['code'] = $errorCode;
 
@@ -182,12 +182,6 @@ class TaskController extends Controller{
             "message" => $this->data['message'],
             "code" => $this->data['code']
         ]);
-
-    }
-
-    public function test(?array $data): void{
-
-
 
     }
 

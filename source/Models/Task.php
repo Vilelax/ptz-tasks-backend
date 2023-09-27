@@ -2,9 +2,9 @@
 
 namespace Source\Models;
 
-use \Source\Core\ActiveRecord;
+use \Source\Core\Model;
 
-class Task extends ActiveRecord{
+class Task extends Model{
     
     protected string $table = "tasks";
     protected string $idField = "id";
