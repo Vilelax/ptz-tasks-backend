@@ -1,8 +1,4 @@
 <?php
-/**
- * SEGUIR A IMPLEMENTAÇÃO DA CONEXÃO BASEANDO-SE NO ARTIGO ABAIXO:
- * link: https://alexandrebbarbosa.wordpress.com/2017/10/27/php-pdo-conexao-conforme-padroes-singleton-e-factory/
- */
 
 namespace Source\Core;
 

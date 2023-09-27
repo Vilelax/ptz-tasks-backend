@@ -1,10 +1,5 @@
 <?php
 
-/**
- * SEGUIR A IMPLEMENTAÇÃO DA MODEL COM ACTIVE RECORD COM BASE NO ARTIGO:
- * link: https://alexandrebbarbosa.wordpress.com/2018/01/08/php-padrao-de-projeto-active-record-orm/
- */
-
 namespace Source\Core;
 
 use PDO;
