@@ -3,7 +3,6 @@
 namespace Source\App;
 
 use \Source\Core\Controller;
-use \Source\Core\HttpError;
 use \Source\Core\View;
 use \Source\Models\Task;
 use \Exception;
@@ -21,23 +20,18 @@ class TaskController extends Controller{
      */
     public function index(): void{
 
-        $data = [];
-
-        $feedback = false;
-
         try{
-
 
             $tasks = (new Task())->all();
 
             if($tasks){
 
                 foreach ($tasks as $task){
-                    $data[$task->id]['title'] = $task->title;
-                    $data[$task->id]['description'] = $task->description;
+                    $this->data[$task->id]['title'] = $task->title;
+                    $this->data[$task->id]['description'] = $task->description;
                 }
 
-                $feedback = true;
+                $this->feedback = true;
             }
 
         }catch(Exception $exception){
@@ -45,8 +39,8 @@ class TaskController extends Controller{
         }
 
         echo View::jsonRender([
-            "data" => $data,
-            "success" => $feedback
+            "data" => $this->data,
+            "success" => $this->feedback
         ]);
 
     }
@@ -55,17 +49,13 @@ class TaskController extends Controller{
 
         $taskId = strip_tags($data['id']);
 
-        $feedback = false;
-
-        $result = [];
-
         try{
             $task = (new Task())->find($taskId);
 
             if($task){
-                $feedback = true;
-                $result['title'] = $task->title;
-                $result['description'] = $task->description;
+                $this->feedback = true;
+                $this->data['title'] = $task->title;
+                $this->data['description'] = $task->description;
             }
 
         }catch(Exception $exception){
@@ -73,8 +63,8 @@ class TaskController extends Controller{
         }
 
         echo View::jsonRender([
-            "data" => $result ?? null,
-            "success" => $feedback
+            "data" => $this->data ?? null,
+            "success" => $this->feedback
         ]);
 
     }
@@ -82,9 +72,7 @@ class TaskController extends Controller{
     /**
      * @throws Exception
      */
-    public function create(?array $data): void{
-
-        $feedback = false;
+    public function create(): void{
 
         try{
 
@@ -94,17 +82,17 @@ class TaskController extends Controller{
             $task->description = isset($_POST['description']) ? strip_tags($_POST['description']) : "";
 
             if($task->save()){
-                $feedback= true;
+                $this->feedback= true;
             }
 
         }catch(Exception $exception){
         }
 
         echo View::jsonRender([
-            "success" => $feedback
+            "success" => $this->feedback
         ]);
 
-        header('Location: http://localhost:3000/');
+        redirect();
 
     }
 
@@ -130,8 +118,7 @@ class TaskController extends Controller{
             "success" => $feedback
         ]);
 
-        header('Location: http://localhost:3000');
-
+        redirect();
     }
 
     public function complete(array $data):void {
@@ -155,7 +142,7 @@ class TaskController extends Controller{
             "success" => $feedback
         ]);
 
-        header('Location: http://localhost:3000');
+        redirect();
     }
 
     /**

@@ -1,5 +1,8 @@
 <?php
 
+define("URL_BASE_BACKEND", "");
+define("URL_BASE_FRONTEND", "");
+
 //HTTP ERROR CODE CONFIGURATION
 define("HTTP_CODE_BAD_REQUEST", 400);
 define("HTTP_CODE_UNAUTHORIZED", 401);
